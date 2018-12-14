@@ -1,0 +1,31 @@
+package_name: coffeehack
+class_name: CoffeeHack
+description: Hacked coffee machine Snips skill
+intents:
+  - intent: segar:verser
+    action: |
+      {%
+      type_cafe = ''
+      taille_cafe = ''
+      intensite_cafe = ''
+      number = 1
+      
+      if len(snips.intent.type_cafe):
+        type_cafe = snips.intent.type_cafe[0]
+      if len(snips.intent.taille_cafe):
+        taille_cafe = snips.intent.taille_cafe[0]
+      if len(snips.intent.intensite_cafe):
+        intensite_cafe = snips.intent.intensite_cafe[0]
+      if len(snips.intent.nombre_cafe):
+        number = int(snips.intent.nombre_cafe[0])
+      snips.skill.verser(type_cafe = type_cafe,
+                taille_cafe = taille_cafe,
+                intensite_cafe = intensite_cafe,
+                number = number,
+                dialogue = snips.dialogue)
+      %}
+  - intent: segar:cafe_io
+    action: |
+      {%
+      snips.skill.cafe_io(snips.dialogue)
+      %}
